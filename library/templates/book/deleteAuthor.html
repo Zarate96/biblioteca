@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+{% block content %}
+  <form class="" method="POST">
+    {% csrf_token %}
+      <h2>Do you want to delete {{ author.name }} user?</h2>
+      <button type="submit" name="button">Eliminar</button>
+      <a href="{% url 'book:listAuthor' %}">Cancel</a>
+  </form>
+{% endblock %}

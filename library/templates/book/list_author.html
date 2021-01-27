@@ -1,0 +1,39 @@
+{% extends 'index.html' %}
+{% block content %}
+  <div class="container">
+  {% if authors %}
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last</th>
+            <th scope="col">Nationality</th>
+            <th scope="col">Description</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for author in authors %}
+            <tr>
+              <th scope="row">{{ author.id }}</th>
+              <td>{{ author.name }}</td>
+              <td>{{ author.last_name }}</td>
+              <td>{{ author.nationality }}</td>
+              <td>{{ author.description }}</td>
+              <td>
+                <a href="{% url 'book:updateAuthor' author.id %}"><i class="fas fa-edit"></i></a>
+              </td>
+              <td>
+                <a href="{% url 'book:deleteAuthor' author.id %}"><i class="fas fa-trash-alt"></i></i></a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+  {% else %}
+    <h1>There aren't authors</h1>
+  {% endif %}
+  </div>
+{% endblock %}
