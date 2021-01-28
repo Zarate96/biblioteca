@@ -7,7 +7,9 @@ class Author(models.Model):
     last_name = models.CharField(max_length=220, blank=False, null=False)
     nationality = models.CharField(max_length=220, blank=False, null=False)
     description = models.TextField(blank=False, null=False)
-
+    estado = models.BooleanField('State', default=True)
+    creation_date = models.DateField('Creation date', auto_now=True, auto_now_add = False)
+    
     class Meta:
         verbose_name = 'Author'
         verbose_name_plural = 'Authors'
@@ -21,6 +23,7 @@ class Book(models.Model):
     publication_date = models.DateField('Publication date', blank=False, null=False)
     author_id = models.ManyToManyField(Author)
     creation_date = models.DateField('Creation date', auto_now=True, auto_now_add = False)
+
     class Meta:
         verbose_name = 'Book'
         verbose_name_plural = 'Books'

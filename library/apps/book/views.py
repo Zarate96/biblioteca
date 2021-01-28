@@ -17,7 +17,7 @@ def createAuthor(request):
     return render(request, 'book/createAuthor.html', {'author_form':author_form, 'title':'Create author'})
 
 def listAuthor(request):
-    authors = Author.objects.all()
+    authors = Author.objects.filter(estado=True)
     return render(request, 'book/list_author.html', {'authors':authors, 'title':'List author'})
 
 def updateAuthor(request,id):
@@ -34,6 +34,7 @@ def updateAuthor(request,id):
 def deleteAuthor(request,id):
     author = Author.objects.get(pk=id)
     if request.method == 'POST':
-        author.delete()
+        author.estado=False
+        author.save()
         return redirect('book:listAuthor')
     return render(request,'book/deleteAuthor.html', {'author':author, 'title':'Delete Author'})
